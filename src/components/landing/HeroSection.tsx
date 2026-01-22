@@ -1,14 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Play } from "lucide-react";
+import { CompanyLogos } from "@/components/landing/CompanyLogos";
 
-const companies = [
-  "Prosegur",
-  "Aerolíneas Argentinas", 
-  "Jumbo",
-  "Farmacity",
-  "Coto",
-  "Shell"
-];
+
 
 export const HeroSection = () => {
   const scrollToWizard = () => {
@@ -41,7 +35,7 @@ export const HeroSection = () => {
 
           {/* Subheadline */}
           <p className="text-lg md:text-xl text-primary-foreground/80 max-w-2xl mx-auto mb-8 animate-fade-in-up delay-200 text-balance">
-            Ya ayudé a +5,000 personas a conseguir trabajo en empresas como Prosegur, Aerolíneas, Jumbo y más. 
+            Ya ayudé a +5,000 personas a conseguir trabajo en empresas como Prosegur, Aerolíneas, Jumbo y más.
             <strong className="text-primary-foreground"> Ahora te toca a vos.</strong>
           </p>
 
@@ -58,7 +52,7 @@ export const HeroSection = () => {
           </div>
 
           {/* CTA Button */}
-          <Button 
+          <Button
             onClick={scrollToWizard}
             className="btn-accent text-lg px-10 py-6 h-auto animate-fade-in-up delay-400"
           >
@@ -68,18 +62,11 @@ export const HeroSection = () => {
 
         {/* Company logos */}
         <div className="mt-16 pt-8 border-t border-primary-foreground/10">
-          <p className="text-center text-primary-foreground/50 text-sm mb-6 uppercase tracking-wider">
+          <p className="text-center text-primary-foreground/50 text-sm mb-6 uppercase tracking-wider animate-fade-in delay-500">
             Empresas donde nuestros clientes consiguieron trabajo
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-            {companies.map((company) => (
-              <div 
-                key={company}
-                className="text-primary-foreground/40 font-semibold text-lg hover:text-primary-foreground/70 transition-colors"
-              >
-                {company}
-              </div>
-            ))}
+          <div className="animate-fade-in delay-600">
+            <CompanyLogos />
           </div>
         </div>
       </div>

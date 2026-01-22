@@ -68,7 +68,7 @@ export const PricingWizard = () => {
     if (!selection.cvType) return 0;
 
     const cvPrice = cvOptions.find(cv => cv.id === selection.cvType)?.price || 0;
-    
+
     // Combo pricing
     if (selection.linkedin && selection.portales) {
       // CV + LinkedIn + Portales
@@ -80,17 +80,17 @@ export const PricingWizard = () => {
       // CV + Portales = $41,000 combo  
       return 41000;
     }
-    
+
     return cvPrice;
   }, [selection]);
 
   const getOriginalTotal = useMemo(() => {
     if (!selection.cvType) return 0;
-    
+
     let total = cvOptions.find(cv => cv.id === selection.cvType)?.price || 0;
     if (selection.linkedin) total += 17000;
     if (selection.portales) total += 23000;
-    
+
     return total;
   }, [selection]);
 
@@ -106,6 +106,40 @@ export const PricingWizard = () => {
     { number: 2, title: "Extras" },
     { number: 3, title: "Resumen" }
   ];
+
+  const handlePayment = () => {
+    // Links provided
+    const LINK_HARVARD_PROF = "https://mpago.li/2NvV5cA"; // $18.000 (Sirve para Profesional y Harvard)
+    const LINK_DISENO = "https://mpago.li/34nz9hp";       // $20.000
+
+    // Logic
+    const isCombo = selection.linkedin || selection.portales;
+
+    // 1. If it's a simple base service (No addons)
+    if (!isCombo) {
+      if (selection.cvType === "profesional" || selection.cvType === "harvard") {
+        window.open(LINK_HARVARD_PROF, '_blank');
+        return;
+      }
+      if (selection.cvType === "diseno") {
+        window.open(LINK_DISENO, '_blank');
+        return;
+      }
+    }
+
+    // 2. Fallback for Combos (Redirect to WhatsApp)
+    // Since we don't have specific links for $30k/$41k yet.
+    const total = calculateTotal;
+    const items = [];
+    if (selection.cvType) items.push(cvOptions.find(c => c.id === selection.cvType)?.name);
+    if (selection.linkedin) items.push("LinkedIn");
+    if (selection.portales) items.push("Portales");
+
+    const message = `Hola Hernán! Quiero encargar el combo: ${items.join(" + ")}. El total es ${formatPrice(total)}. ¿Me enviás el link de pago?`;
+
+    // WhatsApp Fallback with Real Number
+    window.open(`https://wa.me/5491123808592?text=${encodeURIComponent(message)}`, '_blank');
+  };
 
   return (
     <section id="wizard" className="section-padding bg-background">
@@ -124,11 +158,11 @@ export const PricingWizard = () => {
           <div className="flex items-center justify-center mb-8">
             {steps.map((s, index) => (
               <div key={s.number} className="flex items-center">
-                <div 
+                <div
                   className={cn(
                     "flex items-center justify-center w-10 h-10 rounded-full font-bold transition-colors",
-                    step >= s.number 
-                      ? "bg-primary text-primary-foreground" 
+                    step >= s.number
+                      ? "bg-primary text-primary-foreground"
                       : "bg-muted text-muted-foreground"
                   )}
                 >
@@ -158,7 +192,7 @@ export const PricingWizard = () => {
                 <h3 className="text-xl font-bold text-foreground mb-6">
                   ¿Qué tipo de CV querés?
                 </h3>
-                
+
                 {cvOptions.map((option) => (
                   <button
                     key={option.id}
@@ -202,17 +236,17 @@ export const PricingWizard = () => {
                 <h3 className="text-xl font-bold text-foreground mb-6">
                   ¿Querés agregar algo más?
                 </h3>
-                
+
                 {addons.map((addon) => {
                   const isSelected = addon.id === "linkedin" ? selection.linkedin : selection.portales;
                   const comboPrice = addon.id === "linkedin" ? 30000 : 41000;
-                  
+
                   return (
                     <button
                       key={addon.id}
-                      onClick={() => setSelection({ 
-                        ...selection, 
-                        [addon.id]: !isSelected 
+                      onClick={() => setSelection({
+                        ...selection,
+                        [addon.id]: !isSelected
                       })}
                       className={cn(
                         "w-full p-4 rounded-xl border-2 text-left transition-all duration-200",
@@ -252,7 +286,7 @@ export const PricingWizard = () => {
                     </button>
                   );
                 })}
-                
+
                 <p className="text-sm text-muted-foreground text-center mt-4">
                   💡 Tip: Podés saltear este paso si solo querés el CV
                 </p>
@@ -265,7 +299,7 @@ export const PricingWizard = () => {
                 <h3 className="text-xl font-bold text-foreground mb-6">
                   Resumen de tu pedido
                 </h3>
-                
+
                 <div className="space-y-4 mb-6">
                   {/* Selected CV */}
                   {selection.cvType && (
@@ -281,7 +315,7 @@ export const PricingWizard = () => {
                       </span>
                     </div>
                   )}
-                  
+
                   {/* Selected Addons */}
                   {selection.linkedin && (
                     <div className="flex justify-between items-center p-4 bg-secondary rounded-xl">
@@ -292,7 +326,7 @@ export const PricingWizard = () => {
                       <span className="text-muted-foreground">{formatPrice(17000)}</span>
                     </div>
                   )}
-                  
+
                   {selection.portales && (
                     <div className="flex justify-between items-center p-4 bg-secondary rounded-xl">
                       <div className="flex items-center gap-3">
@@ -329,14 +363,14 @@ export const PricingWizard = () => {
                 </div>
 
                 {/* Payment Button */}
-                <Button 
+                <Button
                   className="btn-accent w-full text-lg py-6 h-auto"
-                  onClick={() => window.open('#mercadopago-placeholder', '_blank')}
+                  onClick={handlePayment}
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
                   PAGAR CON MERCADO PAGO
                 </Button>
-                
+
                 <p className="text-center text-sm text-muted-foreground mt-4">
                   🔒 Pago 100% seguro a través de Mercado Pago
                 </p>
@@ -356,7 +390,7 @@ export const PricingWizard = () => {
               ) : (
                 <div />
               )}
-              
+
               {step < 3 && (
                 <Button
                   onClick={() => setStep(step + 1)}

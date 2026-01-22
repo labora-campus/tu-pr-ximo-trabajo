@@ -1,144 +1,81 @@
-import { useState } from "react";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import * as React from "react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
-const testimonials = [
-  {
-    company: "PROSEGUR",
-    result: "Consiguió trabajo gracias al CV",
-    color: "bg-red-500"
-  },
-  {
-    company: "Aeropuertos Argentina 2000",
-    result: "Operador maquinista - Se postuló por LinkedIn",
-    color: "bg-blue-600"
-  },
-  {
-    company: "Farmacity + Jumbo",
-    result: "DOBLETE - Consiguió 2 trabajos con el mismo CV",
-    color: "bg-green-500"
-  },
-  {
-    company: "Grupo Gestión",
-    result: "9 días después consiguió trabajo",
-    color: "bg-purple-600"
-  },
-  {
-    company: "Aerolíneas Argentinas",
-    result: "Sector Rampa - Consiguió horario fijo",
-    color: "bg-sky-600"
-  }
+const screenshots = [
+  "IMG_3588.PNG",
+  "IMG_3616.PNG",
+  "IMG_3812.PNG",
+  "IMG_3813.PNG",
+  "IMG_3814.PNG",
+  "IMG_3815.PNG",
+  "IMG_3816.PNG",
+  "IMG_3817.PNG",
+  "IMG_3818.PNG",
+  "IMG_3819.PNG",
+  "IMG_3820.PNG",
+  "IMG_3821.PNG",
+  "IMG_3822.PNG",
+  "IMG_3823.PNG",
+  "IMG_3824.PNG"
 ];
 
 export const Testimonials = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextTestimonial = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-
   return (
-    <section className="section-padding bg-secondary">
+    <section className="section-padding bg-secondary overflow-hidden">
       <div className="container-custom">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Casos de éxito reales
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Mirá lo que lograron personas como vos con nuestros CVs
+            Resultados comprobables. Deslizá para ver las conversaciones reales.
           </p>
         </div>
 
-        {/* Mobile Carousel */}
-        <div className="md:hidden relative">
-          <div className="overflow-hidden">
-            <div 
-              className="flex transition-transform duration-300 ease-in-out"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
-              {testimonials.map((testimonial, index) => (
-                <div key={index} className="w-full flex-shrink-0 px-2">
-                  <TestimonialCard testimonial={testimonial} />
-                </div>
+        <div className="max-w-xs md:max-w-4xl mx-auto">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-2 md:-ml-4">
+              {screenshots.map((src, index) => (
+                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                  <div className="p-1">
+                    <div className="overflow-hidden rounded-xl border border-border shadow-md bg-card aspect-[9/16] relative group">
+                      <img
+                        src={`/${src}`}
+                        alt={`Testimonio ${index + 1}`}
+                        className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
+                        <span className="text-white font-medium text-sm bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm">
+                          Verificado
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
               ))}
-            </div>
-          </div>
-          
-          <div className="flex justify-center items-center gap-4 mt-6">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={prevTestimonial}
-              className="rounded-full"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </Button>
-            <div className="flex gap-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                    index === currentIndex ? 'bg-primary' : 'bg-primary/30'
-                  }`}
-                />
-              ))}
-            </div>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={nextTestimonial}
-              className="rounded-full"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </Button>
-          </div>
-        </div>
+            </CarouselContent>
+            <CarouselPrevious className="hidden md:flex -left-12 bg-background border-primary/20 hover:bg-primary hover:text-white" />
+            <CarouselNext className="hidden md:flex -right-12 bg-background border-primary/20 hover:bg-primary hover:text-white" />
+          </Carousel>
 
-        {/* Desktop Grid */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {testimonials.map((testimonial, index) => (
-            <TestimonialCard key={index} testimonial={testimonial} />
-          ))}
+          <div className="flex justify-center mt-8 md:hidden text-sm text-muted-foreground animate-pulse">
+            ← Deslizá para ver más →
+          </div>
         </div>
       </div>
     </section>
-  );
-};
-
-const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] }) => {
-  return (
-    <div className="card-elevated p-6 h-full">
-      <div className="flex items-start gap-4">
-        {/* Company logo placeholder */}
-        <div className={`w-14 h-14 ${testimonial.color} rounded-xl flex items-center justify-center flex-shrink-0`}>
-          <span className="text-white font-bold text-lg">
-            {testimonial.company.charAt(0)}
-          </span>
-        </div>
-        
-        <div className="flex-1">
-          <h4 className="font-bold text-foreground mb-1">{testimonial.company}</h4>
-          <div className="flex items-start gap-2">
-            <Quote className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
-            <p className="text-muted-foreground text-sm">{testimonial.result}</p>
-          </div>
-        </div>
-      </div>
-      
-      <div className="mt-4 pt-4 border-t border-border">
-        <div className="flex items-center gap-1">
-          {[...Array(5)].map((_, i) => (
-            <svg key={i} className="w-4 h-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
-          ))}
-        </div>
-      </div>
-    </div>
   );
 };
