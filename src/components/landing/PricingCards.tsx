@@ -5,12 +5,12 @@ import { cn } from "@/lib/utils";
 const plans = [
   {
     name: "CV Profesional",
-    price: 18000,
-    subtitle: "Ideal para empezar",
+    price: 20000,
+    subtitle: "Formato con diseño y efectivo",
     popular: false,
     features: [
       "CV profesional completo",
-      "Entrega en 24hs",
+      "Entrega en 72hs hábiles",
       "1 revisión incluida",
       "Formato Word + PDF"
     ]
@@ -24,7 +24,7 @@ const plans = [
     features: [
       "CV profesional completo",
       "Optimización de LinkedIn",
-      "Entrega en 24hs",
+      "Entrega en 72hs hábiles",
       "1 revisión incluida",
       "Perfil destacado"
     ]
@@ -38,7 +38,7 @@ const plans = [
       "CV profesional completo",
       "Postulación en Bumeran",
       "Postulación en Grupo Gestión",
-      "Entrega en 24hs",
+      "Entrega en 72hs hábiles",
       "1 revisión incluida"
     ]
   }
@@ -72,12 +72,12 @@ export const PricingCards = () => {
 
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
           {plans.map((plan, index) => (
-            <div 
+            <div
               key={index}
               className={cn(
                 "relative rounded-2xl p-6 lg:p-8 transition-all duration-300",
-                plan.popular 
-                  ? "bg-primary text-primary-foreground scale-105 shadow-xl z-10" 
+                plan.popular
+                  ? "bg-primary text-primary-foreground scale-105 shadow-xl z-10"
                   : "card-elevated bg-card"
               )}
             >
@@ -102,7 +102,7 @@ export const PricingCards = () => {
                 )}>
                   {plan.subtitle}
                 </p>
-                
+
                 <div className="flex items-center justify-center gap-2">
                   {plan.originalPrice && (
                     <span className={cn(
@@ -147,8 +147,8 @@ export const PricingCards = () => {
                 onClick={scrollToWizard}
                 className={cn(
                   "w-full py-6 h-auto font-semibold",
-                  plan.popular 
-                    ? "bg-accent hover:bg-accent/90 text-accent-foreground" 
+                  plan.popular
+                    ? "bg-accent hover:bg-accent/90 text-accent-foreground"
                     : "bg-primary hover:bg-primary/90 text-primary-foreground"
                 )}
               >

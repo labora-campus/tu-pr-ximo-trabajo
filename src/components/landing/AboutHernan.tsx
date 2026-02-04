@@ -36,7 +36,7 @@ export const AboutHernan = () => {
 
                     {/* Content Column */}
                     <div className="w-full lg:w-1/2 text-left">
-                        <div className="inline-block bg-accent/10 text-accent-foreground px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
+                        <div className="inline-block bg-accent text-accent-foreground px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
                             SOBRE MÍ
                         </div>
 
@@ -46,16 +46,16 @@ export const AboutHernan = () => {
 
                         <div className="space-y-6 text-muted-foreground text-lg leading-relaxed">
                             <p>
-                                Creador de <strong className="text-foreground">AyudarteAR</strong>. Este proyecto nació de una necesidad real: miles de personas buscaban trabajo, pero no sabían por dónde empezar, cómo armar un CV, dónde postularse, o cómo presentarse en una entrevista.
-                                <span className="italic"> Y yo estuve en ese lugar.</span>
+                                En 2023 empecé a crear mis primeros videos de ayuda laboral porque yo también pasé por lo mismo: la búsqueda de trabajo, entrevistas difíciles y la frustración de no saber cómo destacar.
                             </p>
-
                             <p>
-                                Con el tiempo descubrí que compartir mis aprendizajes, mis errores y mi experiencia podía ayudar a otros a conseguir oportunidades reales. Así empezó AyudarteAR: como un puente entre las personas y el trabajo que están buscando.
+                                Arranqué contando mi experiencia real como trabajador y cómo logré sobresalir en los puestos que tuve, entendiendo qué buscan las empresas y cómo presentarme mejor.
                             </p>
-
                             <p>
-                                Hoy, mi comunidad reúne a miles de personas interesadas en búsqueda laboral, empleo remoto y desarrollo profesional, donde comparto contenido claro, educativo y práctico, pensado para generar impacto real.
+                                Hoy trabajo como coach estratégico, ayudando a personas a mejorar su CV con palabras clave, estructura profesional y un perfil que realmente llame la atención de reclutadores.
+                            </p>
+                            <p>
+                                Mi objetivo es seguir creciendo y ayudando a más personas a conseguir oportunidades reales con contenido práctico y resultados.
                             </p>
                         </div>
 

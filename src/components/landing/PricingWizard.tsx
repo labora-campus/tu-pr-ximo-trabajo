@@ -3,7 +3,7 @@ import { Check, ChevronRight, ChevronLeft, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-type CVType = "profesional" | "harvard" | "diseno" | null;
+type CVType = "profesional" | "harvard" | null;
 
 interface Selection {
   cvType: CVType;
@@ -15,20 +15,14 @@ const cvOptions = [
   {
     id: "profesional" as const,
     name: "CV Profesional",
-    price: 18000,
-    description: "Formato clásico y efectivo"
+    price: 20000,
+    description: "Formato con diseño y efectivo"
   },
   {
     id: "harvard" as const,
     name: "CV Harvard",
     price: 18000,
-    description: "Estructura académica reconocida"
-  },
-  {
-    id: "diseno" as const,
-    name: "CV con Diseño",
-    price: 20000,
-    description: "Visualmente atractivo y moderno"
+    description: "Formato tradicional, sin foto"
   }
 ];
 
@@ -108,36 +102,23 @@ export const PricingWizard = () => {
   ];
 
   const handlePayment = () => {
-    // Links provided
-    const LINK_HARVARD_PROF = "https://mpago.li/2NvV5cA"; // $18.000 (Sirve para Profesional y Harvard)
-    const LINK_DISENO = "https://mpago.li/34nz9hp";       // $20.000
-
-    // Logic
-    const isCombo = selection.linkedin || selection.portales;
-
-    // 1. If it's a simple base service (No addons)
-    if (!isCombo) {
-      if (selection.cvType === "profesional" || selection.cvType === "harvard") {
-        window.open(LINK_HARVARD_PROF, '_blank');
-        return;
-      }
-      if (selection.cvType === "diseno") {
-        window.open(LINK_DISENO, '_blank');
-        return;
-      }
-    }
-
-    // 2. Fallback for Combos (Redirect to WhatsApp)
-    // Since we don't have specific links for $30k/$41k yet.
+    // Build order details
     const total = calculateTotal;
     const items = [];
-    if (selection.cvType) items.push(cvOptions.find(c => c.id === selection.cvType)?.name);
-    if (selection.linkedin) items.push("LinkedIn");
-    if (selection.portales) items.push("Portales");
 
-    const message = `Hola Hernán! Quiero encargar el combo: ${items.join(" + ")}. El total es ${formatPrice(total)}. ¿Me enviás el link de pago?`;
+    if (selection.cvType) {
+      items.push(cvOptions.find(c => c.id === selection.cvType)?.name);
+    }
+    if (selection.linkedin) {
+      items.push("Optimización de LinkedIn");
+    }
+    if (selection.portales) {
+      items.push("Postulación en 2 portales");
+    }
 
-    // WhatsApp Fallback with Real Number
+    const message = `Hola Hernán! Quiero encargar: ${items.join(" + ")}. Total: ${formatPrice(total)}. ¿Cómo sigo?`;
+
+    // Always redirect to WhatsApp
     window.open(`https://wa.me/5491123808592?text=${encodeURIComponent(message)}`, '_blank');
   };
 
@@ -362,17 +343,17 @@ export const PricingWizard = () => {
                   </div>
                 </div>
 
-                {/* Payment Button */}
+                {/* Contact Button */}
                 <Button
                   className="btn-accent w-full text-lg py-6 h-auto"
                   onClick={handlePayment}
                 >
                   <ShoppingCart className="w-5 h-5 mr-2" />
-                  PAGAR CON MERCADO PAGO
+                  HACER EL PEDIDO
                 </Button>
 
                 <p className="text-center text-sm text-muted-foreground mt-4">
-                  🔒 Pago 100% seguro a través de Mercado Pago
+                  � Te responderemos al instante para coordinar el pago
                 </p>
               </div>
             )}

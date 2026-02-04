@@ -8,7 +8,7 @@ import {
 const faqs = [
   {
     question: "¿Cuánto tarda el CV?",
-    answer: "Entregamos en menos de 24 horas desde que completás el formulario. Si lo necesitás más rápido, escribinos por WhatsApp."
+    answer: "Entregamos en 72 horas hábiles desde que completás el formulario. Si lo necesitás más rápido, escribinos por WhatsApp."
   },
   {
     question: "¿Qué información necesitan?",
@@ -48,8 +48,8 @@ export const FAQ = () => {
         <div className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
-              <AccordionItem 
-                key={index} 
+              <AccordionItem
+                key={index}
                 value={`item-${index}`}
                 className="card-elevated px-6 border-none"
               >

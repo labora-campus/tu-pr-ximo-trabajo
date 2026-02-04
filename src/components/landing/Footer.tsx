@@ -1,4 +1,4 @@
-import { Instagram, MessageCircle } from "lucide-react";
+import { Instagram, MessageCircle, Linkedin, Music, Youtube } from "lucide-react";
 
 export const Footer = () => {
   return (
@@ -12,19 +12,46 @@ export const Footer = () => {
           </div>
 
           {/* Social links */}
-          <div className="flex items-center gap-4">
-            <a 
-              href="https://instagram.com/hernilamanna" 
-              target="_blank" 
+          <div className="flex items-center gap-3">
+            <a
+              href="https://www.linkedin.com/in/gabriel-hernan-lamanna-b0178b192/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-background/20 transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-5 h-5" />
+            </a>
+            <a
+              href="https://www.instagram.com/hernilamanna"
+              target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-background/20 transition-colors"
               aria-label="Instagram"
             >
               <Instagram className="w-5 h-5" />
             </a>
-            <a 
-              href="https://wa.me/XXXXXXXXXXX" 
-              target="_blank" 
+            <a
+              href="https://www.tiktok.com/@hernilamanna"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-background/20 transition-colors"
+              aria-label="TikTok"
+            >
+              <Music className="w-5 h-5" />
+            </a>
+            <a
+              href="https://www.youtube.com/@hernanlamanna"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-background/20 transition-colors"
+              aria-label="YouTube"
+            >
+              <Youtube className="w-5 h-5" />
+            </a>
+            <a
+              href="https://wa.me/5491123808592"
+              target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-background/20 transition-colors"
               aria-label="WhatsApp"

@@ -3,7 +3,7 @@ import { FileText, Users, Clock, Tv } from "lucide-react";
 const stats = [
   {
     icon: FileText,
-    value: "+5,000",
+    value: "+20,000",
     label: "CVs armados"
   },
   {
@@ -13,8 +13,8 @@ const stats = [
   },
   {
     icon: Clock,
-    value: "-24hs",
-    label: "de entrega"
+    value: "72hs",
+    label: "hábiles"
   },
   {
     icon: Tv,
@@ -29,7 +29,7 @@ export const SocialProofBar = () => {
       <div className="container-custom px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {stats.map((stat, index) => (
-            <div 
+            <div
               key={index}
               className="flex items-center justify-center gap-3 group"
             >
