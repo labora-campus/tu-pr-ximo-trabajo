@@ -119,7 +119,7 @@ export const PricingWizard = () => {
     const message = `Hola Hernán! Quiero encargar: ${items.join(" + ")}. Total: ${formatPrice(total)}. ¿Cómo sigo?`;
 
     // Always redirect to WhatsApp
-    window.open(`https://wa.me/5491123808592?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/5491150538808?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (

@@ -50,7 +50,7 @@ export const Footer = () => {
               <Youtube className="w-5 h-5" />
             </a>
             <a
-              href="https://wa.me/5491123808592"
+              href="https://wa.me/5491150538808"
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-background/20 transition-colors"

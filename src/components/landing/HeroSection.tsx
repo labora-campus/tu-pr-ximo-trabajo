@@ -44,7 +44,7 @@ export const HeroSection = () => {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/ssjbB2RKXg0?modestbranding=1&controls=0&showinfo=0&rel=0&iv_load_policy=3&disablekb=1"
+                src="https://www.youtube.com/embed/_0AIGSOKJZw?modestbranding=1&controls=0&showinfo=0&rel=0&iv_load_policy=3&disablekb=1"
                 title="Cómo funciona - Hernán Lamanna CV"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
