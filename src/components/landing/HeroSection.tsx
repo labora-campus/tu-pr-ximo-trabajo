@@ -4,10 +4,6 @@ import { CompanyLogos } from "@/components/landing/CompanyLogos";
 
 
 export const HeroSection = () => {
-  const scrollToWizard = () => {
-    document.getElementById('wizard')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <section className="relative bg-primary overflow-hidden">
       {/* Background decoration */}
@@ -59,10 +55,10 @@ export const HeroSection = () => {
 
           {/* CTA Button */}
           <Button
-            onClick={scrollToWizard}
-            className="btn-accent text-lg px-10 py-6 h-auto animate-fade-in-up delay-400"
+            onClick={() => window.open(`https://wa.me/5491150538808?text=${encodeURIComponent("Hola Hernán, vengo de la landing, quiero armar mi CV con ustedes.")}`, '_blank')}
+            className="bg-whatsapp hover:bg-whatsapp/90 text-white text-lg font-bold px-10 py-6 h-auto rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 animate-fade-in-up delay-400"
           >
-            QUIERO MI CV PROFESIONAL
+            Tocá acá para contactarte
           </Button>
         </div>
 
